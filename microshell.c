@@ -10,18 +10,10 @@ int main() {
 
     char line[MAX_LENGTH];
     char cwd[1024];
-
-    //Główny program będzie w pętli: 
     while (1) {
-
-
-        //1. wyświetlał znak zachęty > , 
 
         getcwd(cwd, sizeof(cwd));
         printf("[%s]> ", cwd);
-
-
-        //2. odczytywał linię znaków wprowadzoną przez użytkownika, 
 
         if (!fgets(line, MAX_LENGTH, stdin)){
             break;
@@ -29,9 +21,6 @@ int main() {
         size_t length = strlen(line);
         if (line[length - 1] == '\n')
             line[length - 1] = '\0';
-
-
-        //3. dzielił po spacjach linię znaków na poszczególne tokeny - argumenty, 
 
         char *args[10] = {};
         args[0] = strtok(line, " ");
@@ -41,10 +30,6 @@ int main() {
           i++;
           args[i] = strtok(NULL, " ");
         }
-
-
-
-        //4. uruchamiał proces potomny z argumentami z kroku 3. 
 
         if (strcmp(args[0], "exit") == 0) {
             exit(0);
